@@ -1,13 +1,12 @@
-﻿using System.Runtime.Serialization;
-
-namespace NGitLab.Models
+﻿namespace NGitLab.Models
 {
-    [DataContract]
-    public class Session : User
-    {
-        public new const string Url = "/session";
+	using System.Runtime.Serialization;
 
-        [DataMember(Name="private_token")]
-        public string PrivateToken;
-    }
+	[DataContract]
+	public class Session : User
+	{
+		public new const string Url = "/session";
+
+		[DataMember(Name = "private_token")] public string PrivateToken;
+	}
 }

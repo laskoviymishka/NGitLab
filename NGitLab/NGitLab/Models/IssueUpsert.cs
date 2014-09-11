@@ -3,10 +3,9 @@
 // Copyright (c) One Call Care Management, Inc. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
+
 namespace NGitLab.Models
 {
-	using System;
-	using System.Collections.Generic;
 	using System.Runtime.Serialization;
 
 	[DataContract]

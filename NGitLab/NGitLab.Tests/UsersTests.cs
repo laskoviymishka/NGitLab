@@ -1,78 +1,78 @@
-﻿using System;
-using System.Linq;
-using NGitLab.Models;
-using NUnit.Framework;
-
-namespace NGitLab.Tests
+﻿namespace NGitLab.Tests
 {
-    public class UsersTests
-    {
-        private readonly IUserClient _users;
+	using System;
+	using System.Linq;
+	using NGitLab.Models;
+	using NUnit.Framework;
 
-        public UsersTests()
-        {
-            _users = Config.Connect().Users;
-        }
+	public class UsersTests
+	{
+		private readonly IUserClient _users;
 
-        [Test]
-        public void Current()
-        {
-            var session = _users.Current;
+		public UsersTests()
+		{
+			_users = Config.Connect().Users;
+		}
 
-            Assert.AreNotEqual(default(DateTime), session.CreatedAt);
-            Assert.NotNull(session.Email);
-            Assert.NotNull(session.Name);
-            Assert.NotNull(session.PrivateToken);
-            Assert.NotNull(session.PrivateToken);
-        }
+		[Test]
+		public void Current()
+		{
+			Session session = _users.Current;
 
-        [Test]
-        public void GetUsers()
-        {
-            var users = _users.All.ToArray();
+			Assert.AreNotEqual(default(DateTime), session.CreatedAt);
+			Assert.NotNull(session.Email);
+			Assert.NotNull(session.Name);
+			Assert.NotNull(session.PrivateToken);
+			Assert.NotNull(session.PrivateToken);
+		}
 
-            CollectionAssert.IsNotEmpty(users);
-        }
+		[Test]
+		public void GetUsers()
+		{
+			User[] users = _users.All.ToArray();
 
-        [Test]
-        public void GetUser()
-        {
-            var user = _users[1];
+			CollectionAssert.IsNotEmpty(users);
+		}
 
-            Assert.AreEqual("user", user.Username);
-            Assert.AreEqual(true, user.CanCreateGroup);
-        }
+		[Test]
+		public void GetUser()
+		{
+			User user = _users[1];
 
-        [Test]
-        public void CreateUpdateDelete()
-        {
-            var u = new UserUpsert
-            {
-                Email = "test@test.pl",
-                Bio = "bio",
-                CanCreateGroup = true,
-                IsAdmin = true,
-                Linkedin = null,
-                Name = "sadfasdf",
-                Password = "!@#$QWDRQW@",
-                ProjectsLimit = 1000,
-                Provider = "provider",
-                Skype = "skype",
-                Twitter = "twitter",
-                Username = "username",
-                WebsiteURL = "wp.pl"
-            };
+			Assert.AreEqual("user", user.Username);
+			Assert.AreEqual(true, user.CanCreateGroup);
+		}
 
-            var addedUser = _users.Create(u);
-            Assert.AreEqual(u.Bio, addedUser.Bio);
+		[Test]
+		public void CreateUpdateDelete()
+		{
+			var u = new UserUpsert
+			{
+				Email = "test@test.pl",
+				Bio = "bio",
+				CanCreateGroup = true,
+				IsAdmin = true,
+				Linkedin = null,
+				Name = "sadfasdf",
+				Password = "!@#$QWDRQW@",
+				ProjectsLimit = 1000,
+				Provider = "provider",
+				Skype = "skype",
+				Twitter = "twitter",
+				Username = "username",
+				WebsiteURL = "wp.pl"
+			};
 
-            u.Bio = "Bio2";
-            u.Email = "test@test.pl";
+			User addedUser = _users.Create(u);
+			Assert.AreEqual(u.Bio, addedUser.Bio);
 
-            var updatedUser = _users.Update(addedUser.Id, u);
-            Assert.AreEqual(u.Bio, updatedUser.Bio);
+			u.Bio = "Bio2";
+			u.Email = "test@test.pl";
 
-            _users.Delete(addedUser.Id);
-        }
-    }
+			User updatedUser = _users.Update(addedUser.Id, u);
+			Assert.AreEqual(u.Bio, updatedUser.Bio);
+
+			_users.Delete(addedUser.Id);
+		}
+	}
 }

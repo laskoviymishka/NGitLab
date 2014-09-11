@@ -1,30 +1,24 @@
-﻿using System.Runtime.Serialization;
-
-namespace NGitLab.Models
+﻿namespace NGitLab.Models
 {
-    public class MergeRequest
-    {
-        public const string Url = "/merge_requests";
+	using System.Runtime.Serialization;
 
-        public int Id;
-        public int Iid;
-        public string Title;
-        public string State;
-        public bool Closed;
-        public bool Merged;
-        public User Author;
-        public User Assignee;
+	public class MergeRequest
+	{
+		public const string Url = "/merge_requests";
+		public User Assignee;
+		public User Author;
+		public bool Closed;
 
-        [DataMember(Name="target_branch")]
-        public string TargetBranch;
+		public int Id;
+		public int Iid;
+		public bool Merged;
 
-        [DataMember(Name="source_branch")]
-        public string SourceBranch;
+		[DataMember(Name = "project_id")] public int ProjectId;
+		[DataMember(Name = "source_branch")] public string SourceBranch;
 
-        [DataMember(Name="project_id")]
-        public int ProjectId;
-
-        [DataMember(Name="source_project_id")]
-        public int SourceProjectId;
-    }
+		[DataMember(Name = "source_project_id")] public int SourceProjectId;
+		public string State;
+		[DataMember(Name = "target_branch")] public string TargetBranch;
+		public string Title;
+	}
 }

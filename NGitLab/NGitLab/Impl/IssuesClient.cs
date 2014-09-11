@@ -104,7 +104,7 @@
 
 		public void AddComment(int issueId, Note note)
 		{
-			this.Notes(issueId).Create(note.Body);
+			Notes(issueId).Create(note.Body);
 		}
 
 		public INotesClient Notes(Issue issue)

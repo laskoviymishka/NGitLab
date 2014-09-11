@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using NGitLab.Models;
-
-namespace NGitLab.Impl
+﻿namespace NGitLab.Impl
 {
+	using System;
+	using System.Collections.Generic;
+	using System.IO;
+	using NGitLab.Models;
+
 	public class RepositoryClient : IRepositoryClient
 	{
 		private readonly API _api;
-		private readonly string _repoPath;
 		private readonly string _projectPath;
+		private readonly string _repoPath;
 
 		public RepositoryClient(API api, int projectId)
 		{

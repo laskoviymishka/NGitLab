@@ -1,29 +1,28 @@
-﻿using NGitLab.Impl;
-
-namespace NGitLab
+﻿namespace NGitLab
 {
-    public class GitLabClient
-    {
-        private GitLabClient(string hostUrl, string apiToken)
-        {
-            _api = new API(hostUrl, apiToken);
-            Users = new UserClient(_api);
-            Projects = new ProjectClient(_api);
-        }
+	using NGitLab.Impl;
 
-        public static GitLabClient Connect(string hostUrl, string apiToken)
-        {
-            return new GitLabClient(hostUrl, apiToken);
-        }
+	public class GitLabClient
+	{
+		public readonly IProjectClient Projects;
+		public readonly IUserClient Users;
+		private readonly API _api;
 
-        private readonly API _api;
+		private GitLabClient(string hostUrl, string apiToken)
+		{
+			_api = new API(hostUrl, apiToken);
+			Users = new UserClient(_api);
+			Projects = new ProjectClient(_api);
+		}
 
-        public readonly IUserClient Users;
-        public readonly IProjectClient Projects;
+		public static GitLabClient Connect(string hostUrl, string apiToken)
+		{
+			return new GitLabClient(hostUrl, apiToken);
+		}
 
-        public IRepositoryClient GetRepository(int projectId)
-        {
-            return new RepositoryClient(_api, projectId);
-        }
-    }
+		public IRepositoryClient GetRepository(int projectId)
+		{
+			return new RepositoryClient(_api, projectId);
+		}
+	}
 }

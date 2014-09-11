@@ -1,29 +1,19 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace NGitLab.Models
+﻿namespace NGitLab.Models
 {
-    [DataContract]
-    public class Commit
-    {
-        public const string Url = "/commits";
+	using System;
+	using System.Runtime.Serialization;
 
-        [DataMember(Name = "id")]
-        public Sha1 Id;
+	[DataContract]
+	public class Commit
+	{
+		public const string Url = "/commits";
 
-        [DataMember(Name = "title")]
-        public string Title;
+		[DataMember(Name = "author_email")] public string AuthorEmail;
+		[DataMember(Name = "author_name")] public string AuthorName;
 
-        [DataMember(Name = "short_id")]
-        public string ShortId;
-
-        [DataMember(Name = "author_name")]
-        public string AuthorName;
-
-        [DataMember(Name = "author_email")]
-        public string AuthorEmail;
-
-        [DataMember(Name = "created_at")]
-        public DateTime CreatedAt;
-    }
+		[DataMember(Name = "created_at")] public DateTime CreatedAt;
+		[DataMember(Name = "id")] public Sha1 Id;
+		[DataMember(Name = "short_id")] public string ShortId;
+		[DataMember(Name = "title")] public string Title;
+	}
 }

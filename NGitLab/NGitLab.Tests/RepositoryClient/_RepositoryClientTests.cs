@@ -1,27 +1,27 @@
-﻿using System.Linq;
-using NGitLab.Models;
-using NUnit.Framework;
-
-namespace NGitLab.Tests.RepositoryClient
+﻿namespace NGitLab.Tests.RepositoryClient
 {
-    [SetUpFixture]
+	using NGitLab.Models;
+	using NUnit.Framework;
+
+	[SetUpFixture]
 // ReSharper disable InconsistentNaming
-    public class _RepositoryClientTests
+	public class _RepositoryClientTests
 // ReSharper restore InconsistentNaming
-    {
-        public static IRepositoryClient RepositoryClient;
-        private Project _project;
+	{
+		public static IRepositoryClient RepositoryClient;
+		public static IUserClient UserClient;
+		private Project _project;
 
-        [SetUp]
-        public void SetUp()
-        {
-            _project = Config.Connect().Projects.Owned.Single();
-            RepositoryClient = Config.Connect().GetRepository(_project.Id);
-        }
+		[SetUp]
+		public void SetUp()
+		{
+			RepositoryClient = Config.Connect().GetRepository(3767);
+			UserClient = Config.Connect().Users;
+		}
 
-        [TearDown]
-        public void TearDown()
-        {
-        }
-    }
+		[TearDown]
+		public void TearDown()
+		{
+		}
+	}
 }

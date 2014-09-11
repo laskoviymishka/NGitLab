@@ -1,32 +1,21 @@
-﻿using System.Runtime.Serialization;
-
-namespace NGitLab.Models
+﻿namespace NGitLab.Models
 {
-    [DataContract]
-    public class Diff
-    {
-        [DataMember(Name = "diff")]
-        public string Difference;
+	using System.Runtime.Serialization;
 
-        [DataMember(Name = "new_path")]
-        public string NewPath;
+	[DataContract]
+	public class Diff
+	{
+		[DataMember(Name = "a_mode")] public string AMode;
 
-        [DataMember(Name = "old_path")]
-        public string OldPath;
+		[DataMember(Name = "b_mode")] public string BMode;
+		[DataMember(Name = "diff")] public string Difference;
+		[DataMember(Name = "deleted_file")] public bool IsDeletedFile;
 
-        [DataMember(Name = "a_mode")]
-        public string AMode;
+		[DataMember(Name = "new_file")] public bool IsNewFile;
 
-        [DataMember(Name = "b_mode")]
-        public string BMode;
+		[DataMember(Name = "renamed_file")] public bool IsRenamedFile;
+		[DataMember(Name = "new_path")] public string NewPath;
 
-        [DataMember(Name = "new_file")]
-        public bool IsNewFile;
-
-        [DataMember(Name = "renamed_file")]
-        public bool IsRenamedFile;
-
-        [DataMember(Name = "deleted_file")]
-        public bool IsDeletedFile;
-    }
+		[DataMember(Name = "old_path")] public string OldPath;
+	}
 }

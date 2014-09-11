@@ -3,11 +3,11 @@
 // Copyright (c) One Call Care Management, Inc. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
+
 namespace NGitLab.Tests.RepositoryClient
 {
-	using System;
+	using System.Collections.Generic;
 	using System.Linq;
-	using NGitLab.Impl;
 	using NGitLab.Models;
 	using NUnit.Framework;
 
@@ -23,21 +23,42 @@ namespace NGitLab.Tests.RepositoryClient
 		[Test]
 		public void GetAll()
 		{
-			var test = _issuesClient.All.ToList();
+			List<Issue> test = _issuesClient.All.ToList();
 			Assert.NotNull(test);
+		}
+
+
+		[Test]
+		public void CreateMany()
+		{
+			for (int i = 0; i < 100; i++)
+			{
+				_issuesClient.Create(new Issue
+				{
+					Title = "test created" + i,
+					Labels = new[] {"test", "test1"}
+				});
+			}
+		}
+
+		[Test]
+		public void CheckMany()
+		{
+			List<Issue> issues = _issuesClient.All.ToList();
+			Assert.IsTrue(issues.Count > 100);
 		}
 
 		[Test]
 		public void Create()
 		{
-			var initialCount = _issuesClient.All.Count();
+			int initialCount = _issuesClient.All.Count();
 			_issuesClient.Create(new Issue
 			{
 				Title = "test created",
-				Labels = new String[] { "test", "test1" }
+				Labels = new[] {"test", "test1"}
 			});
-			
-			var afterCreateCount = _issuesClient.All.Count();
+
+			int afterCreateCount = _issuesClient.All.Count();
 			Assert.IsTrue(initialCount < afterCreateCount);
 			Assert.IsTrue(initialCount + 1 == afterCreateCount);
 		}
@@ -45,13 +66,13 @@ namespace NGitLab.Tests.RepositoryClient
 		[Test]
 		public void Update()
 		{
-			var issue = _issuesClient.All.Last();
-			var initialDescription = issue.Description;
-			var initialLabels = issue.Labels;
+			Issue issue = _issuesClient.All.Last();
+			string initialDescription = issue.Description;
+			IEnumerable<string> initialLabels = issue.Labels;
 			issue.Description = initialDescription + "added";
-			issue.Labels = new [] {"test","test1"};
+			issue.Labels = new[] {"test", "test1"};
 			_issuesClient.Update(issue);
-			var updatedIssue = _issuesClient.All.Last();
+			Issue updatedIssue = _issuesClient.All.Last();
 			Assert.IsTrue(initialDescription != updatedIssue.Description);
 			Assert.IsTrue(updatedIssue.Description.Contains("added"));
 			Assert.IsTrue(updatedIssue.Labels.Count() == 2);

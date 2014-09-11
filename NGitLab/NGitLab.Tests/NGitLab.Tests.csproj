@@ -47,8 +47,10 @@
     <Compile Include="RepositoryClient\FilesClientTests.cs" />
     <Compile Include="RepositoryClient\IssuesClientTests.cs" />
     <Compile Include="RepositoryClient\MilestoneClientTests.cs" />
+    <Compile Include="RepositoryClient\NotesIssueTest.cs" />
     <Compile Include="RepositoryClient\ProjectHooksClientTests.cs" />
     <Compile Include="RepositoryClient\RepositoryClientTests.cs" />
+    <Compile Include="RepositoryClient\UserClientTets.cs" />
     <Compile Include="RepositoryClient\_RepositoryClientTests.cs" />
     <Compile Include="Sha1Tests.cs" />
     <Compile Include="UsersTests.cs" />

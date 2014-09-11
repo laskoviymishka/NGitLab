@@ -1,31 +1,31 @@
-﻿using NGitLab.Models;
-
-namespace NGitLab.Impl
+﻿namespace NGitLab.Impl
 {
-    public class FileClient : IFilesClient
-    {
-        private readonly API _api;
-        private readonly string _repoPath;
+	using NGitLab.Models;
 
-        public FileClient(API api, string repoPath)
-        {
-            _api = api;
-            _repoPath = repoPath;
-        }
+	public class FileClient : IFilesClient
+	{
+		private readonly API _api;
+		private readonly string _repoPath;
 
-        public void Create(FileUpsert file)
-        {
-            _api.Post().With(file).Stream(_repoPath + "/files", s => { });
-        }
+		public FileClient(API api, string repoPath)
+		{
+			_api = api;
+			_repoPath = repoPath;
+		}
 
-        public void Update(FileUpsert file)
-        {
-            _api.Put().With(file).Stream(_repoPath + "/files", s => { });
-        }
+		public void Create(FileUpsert file)
+		{
+			_api.Post().With(file).Stream(_repoPath + "/files", s => { });
+		}
 
-        public void Delete(FileDelete file)
-        {
-            _api.Delete().With(file).Stream(_repoPath + "/files", s => { });
-        }
-    }
+		public void Update(FileUpsert file)
+		{
+			_api.Put().With(file).Stream(_repoPath + "/files", s => { });
+		}
+
+		public void Delete(FileDelete file)
+		{
+			_api.Delete().With(file).Stream(_repoPath + "/files", s => { });
+		}
+	}
 }

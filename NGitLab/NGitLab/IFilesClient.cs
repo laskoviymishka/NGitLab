@@ -1,11 +1,11 @@
-﻿using NGitLab.Models;
-
-namespace NGitLab
+﻿namespace NGitLab
 {
-    public interface IFilesClient
-    {
-        void Create(FileUpsert file);
-        void Update(FileUpsert file);
-        void Delete(FileDelete file);
-    }
+	using NGitLab.Models;
+
+	public interface IFilesClient
+	{
+		void Create(FileUpsert file);
+		void Update(FileUpsert file);
+		void Delete(FileDelete file);
+	}
 }

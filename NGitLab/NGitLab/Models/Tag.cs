@@ -1,14 +1,11 @@
-﻿using System.Runtime.Serialization;
-
-namespace NGitLab.Models
+﻿namespace NGitLab.Models
 {
-    [DataContract]
-    public class Tag
-    {
-        [DataMember(Name = "name")]
-        public string Name;
+	using System.Runtime.Serialization;
 
-        [DataMember(Name = "commit")]
-        public CommitInfo Commit;
-    }
+	[DataContract]
+	public class Tag
+	{
+		[DataMember(Name = "commit")] public CommitInfo Commit;
+		[DataMember(Name = "name")] public string Name;
+	}
 }

@@ -1,9 +1,11 @@
 ﻿namespace NGitLab.Models
 {
-    public enum MergeRequestState
-    {
+	public enum MergeRequestState
+	{
 // ReSharper disable InconsistentNaming
-        opened, closed, merged
+		opened,
+		closed,
+		merged
 // ReSharper restore InconsistentNaming
-    }
+	}
 }

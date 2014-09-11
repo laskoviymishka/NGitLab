@@ -3,9 +3,9 @@
 // Copyright (c) One Call Care Management, Inc. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
+
 namespace NGitLab
 {
-	using System.Collections;
 	using System.Collections.Generic;
 	using NGitLab.Models;
 
